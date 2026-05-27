@@ -1,12 +1,12 @@
 # Mini ERP Inventory Management System
 
-A small ERP-inspired inventory management backend application built with Java Spring Boot and MariaDB.
+A full-stack ERP-inspired inventory management system built with Java Spring Boot, Angular and MariaDB.
 
 The project simulates basic ERP/SAP-like inventory processes such as material management, supplier management, stock movements and stock reporting.
 
 ## Project Goal
 
-The goal of this project is to build a simple backend system that represents a small part of an ERP inventory module.
+The goal of this project is to build a simple full-stack application that represents a small part of an ERP inventory module.
 
 It focuses on:
 
@@ -15,10 +15,13 @@ It focuses on:
 - Stock Movements
 - Current Stock Reports
 - Low Stock Reports
+- Angular frontend for user interaction
 
 This project was created as a portfolio project for Junior Java / SAP / ABAP Developer positions.
 
 ## Tech Stack
+
+### Backend
 
 - Java 17
 - Spring Boot
@@ -29,7 +32,25 @@ This project was created as a portfolio project for Junior Java / SAP / ABAP Dev
 - Bean Validation
 - Swagger / OpenAPI
 - Maven
-- Git / GitHub
+
+### Frontend
+
+- Angular
+- TypeScript
+- HTML
+- CSS
+- Angular Routing
+- Angular Services
+- FormsModule
+- HttpClient
+
+### Tools
+
+- Git
+- GitHub
+- VS Code
+- XAMPP / MariaDB
+- PowerShell
 
 ## Features
 
@@ -43,6 +64,7 @@ This project was created as a portfolio project for Junior Java / SAP / ABAP Dev
 - Search products by name or material number
 - Validate required fields
 - Unique material number
+- Low stock status display in frontend
 
 ### Supplier Management
 
@@ -62,16 +84,28 @@ This project was created as a portfolio project for Junior Java / SAP / ABAP Dev
 - Automatic stock decrease for outgoing goods
 - Validation for insufficient stock
 - View stock movements by product
+- Create stock movements from Angular frontend
 
 ### Stock Reports
 
 - Current stock report
 - Low stock report
 - Minimum stock check
+- Low stock highlighting in frontend
+
+### Frontend Pages
+
+- Products page
+- Suppliers page
+- Stock Movements page
+- Stock Report page
+- Navigation with Angular Router
+- Forms for creating products, suppliers and stock movements
+- Tables for displaying backend data
 
 ### API Documentation
 
-Swagger UI is available after starting the application:
+Swagger UI is available after starting the backend application:
 
 ```text
 http://localhost:8080/swagger-ui.html
@@ -93,7 +127,7 @@ Example database creation:
 CREATE DATABASE mini_erp_inventory;
 ```
 
-## Configuration
+## Backend Configuration
 
 The database connection is configured in:
 
@@ -215,7 +249,9 @@ cd mini-erp-inventory-management
 CREATE DATABASE mini_erp_inventory;
 ```
 
-### 4. Start the application
+### 4. Start the backend
+
+From the main project folder:
 
 ```powershell
 .\mvnw spring-boot:run
@@ -233,40 +269,161 @@ Swagger UI:
 http://localhost:8080/swagger-ui.html
 ```
 
+### 5. Start the frontend
+
+Open a second terminal and go to the Angular frontend folder:
+
+```powershell
+cd frontend
+```
+
+Install dependencies:
+
+```powershell
+npm install
+```
+
+Start Angular:
+
+```powershell
+npm start
+```
+
+The frontend runs on:
+
+```text
+http://localhost:4200
+```
+
 ## Project Structure
 
 ```text
-src/main/java/com/omar/minierp
+mini-erp-inventory
 │
-├── controller
-│   ├── ProductController.java
-│   ├── SupplierController.java
-│   ├── StockMovementController.java
-│   └── ReportController.java
+├── src
+│   └── main
+│       └── java
+│           └── com
+│               └── omar
+│                   └── minierp
+│                       │
+│                       ├── controller
+│                       │   ├── ProductController.java
+│                       │   ├── SupplierController.java
+│                       │   ├── StockMovementController.java
+│                       │   └── ReportController.java
+│                       │
+│                       ├── dto
+│                       │   ├── StockMovementRequest.java
+│                       │   └── StockReportDTO.java
+│                       │
+│                       ├── entity
+│                       │   ├── Product.java
+│                       │   ├── Supplier.java
+│                       │   ├── StockMovement.java
+│                       │   └── MovementType.java
+│                       │
+│                       ├── repository
+│                       │   ├── ProductRepository.java
+│                       │   ├── SupplierRepository.java
+│                       │   └── StockMovementRepository.java
+│                       │
+│                       ├── service
+│                       │   ├── ProductService.java
+│                       │   ├── SupplierService.java
+│                       │   ├── StockMovementService.java
+│                       │   └── ReportService.java
+│                       │
+│                       └── MiniErpInventoryApplication.java
 │
-├── dto
-│   ├── StockMovementRequest.java
-│   └── StockReportDTO.java
+├── frontend
+│   └── src
+│       └── app
+│           │
+│           ├── models
+│           │   ├── product.ts
+│           │   ├── supplier.ts
+│           │   ├── stock-movement.ts
+│           │   ├── stock-movement-request.ts
+│           │   └── stock-report.ts
+│           │
+│           ├── services
+│           │   ├── product.ts
+│           │   ├── supplier.ts
+│           │   ├── stock-movement.ts
+│           │   └── report.ts
+│           │
+│           ├── pages
+│           │   ├── products
+│           │   ├── suppliers
+│           │   ├── stock-movements
+│           │   └── stock-report
+│           │
+│           ├── app.routes.ts
+│           ├── app.config.ts
+│           ├── app.html
+│           ├── app.css
+│           └── app.ts
 │
-├── entity
-│   ├── Product.java
-│   ├── Supplier.java
-│   ├── StockMovement.java
-│   └── MovementType.java
-│
-├── repository
-│   ├── ProductRepository.java
-│   ├── SupplierRepository.java
-│   └── StockMovementRepository.java
-│
-├── service
-│   ├── ProductService.java
-│   ├── SupplierService.java
-│   ├── StockMovementService.java
-│   └── ReportService.java
-│
-└── MiniErpInventoryApplication.java
+├── pom.xml
+└── README.md
 ```
+
+## Frontend Pages
+
+### Products Page
+
+```text
+http://localhost:4200/products
+```
+
+Features:
+
+- Display products from backend
+- Add new product
+- Search products
+- Delete product
+- Show low stock status
+
+### Suppliers Page
+
+```text
+http://localhost:4200/suppliers
+```
+
+Features:
+
+- Display suppliers from backend
+- Add new supplier
+- Search suppliers
+- Delete supplier
+
+### Stock Movements Page
+
+```text
+http://localhost:4200/stock-movements
+```
+
+Features:
+
+- Select product
+- Select supplier
+- Create `EINGANG` movement
+- Create `AUSGANG` movement
+- Display stock movement history
+- Automatically update current stock
+
+### Stock Report Page
+
+```text
+http://localhost:4200/stock-report
+```
+
+Features:
+
+- Display current stock
+- Show low stock products
+- Highlight low stock rows
 
 ## Portfolio Relevance
 
@@ -278,15 +435,18 @@ This project demonstrates practical knowledge of:
 - ERP-inspired inventory processes
 - Material and supplier management
 - Stock movement logic
+- Angular frontend development
+- Angular services and routing
+- REST API integration with Angular HttpClient
 - API documentation with Swagger
 - Git and GitHub workflow
 
 ## Future Improvements
 
-- Angular frontend
 - Authentication and authorization
 - Dashboard with inventory statistics
 - Pagination and sorting
 - Better exception handling
 - Unit and integration tests
 - Docker setup
+- UI improvements with Bootstrap or Angular Material
