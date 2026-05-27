@@ -1,0 +1,136 @@
+<h2>Products / Materials</h2>
+
+<p class="info-text">
+  Diese Seite zeigt Produkte aus dem Spring Boot Backend.
+</p>
+
+<div *ngIf="successMessage" class="success-message">
+  {{ successMessage }}
+</div>
+
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
+<section class="form-card">
+  <h3>Add New Product</h3>
+
+  <form (ngSubmit)="createProduct()">
+    <div class="form-grid">
+      <input
+        type="text"
+        name="materialNumber"
+        placeholder="Material Number"
+        [(ngModel)]="newProduct.materialNumber"
+        required
+      />
+
+      <input
+        type="text"
+        name="name"
+        placeholder="Product Name"
+        [(ngModel)]="newProduct.name"
+        required
+      />
+
+      <input
+        type="text"
+        name="description"
+        placeholder="Description"
+        [(ngModel)]="newProduct.description"
+      />
+
+      <input
+        type="text"
+        name="unit"
+        placeholder="Unit"
+        [(ngModel)]="newProduct.unit"
+        required
+      />
+
+      <input
+        type="number"
+        name="currentStock"
+        placeholder="Current Stock"
+        [(ngModel)]="newProduct.currentStock"
+        required
+      />
+
+      <input
+        type="number"
+        name="minimumStock"
+        placeholder="Minimum Stock"
+        [(ngModel)]="newProduct.minimumStock"
+        required
+      />
+    </div>
+
+    <button type="submit">Save Product</button>
+  </form>
+</section>
+
+<section class="search-card">
+  <h3>Search Products</h3>
+
+  <input
+    type="text"
+    placeholder="Search by name or material number"
+    [(ngModel)]="searchKeyword"
+  />
+
+  <button type="button" (click)="searchProducts()">Search</button>
+  <button type="button" (click)="resetSearch()">Reset</button>
+</section>
+
+<table *ngIf="products.length > 0" class="products-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Material Number</th>
+      <th>Name</th>
+      <th>Unit</th>
+      <th>Current Stock</th>
+      <th>Minimum Stock</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr
+      *ngFor="let product of products"
+      [class.low-stock-row]="product.currentStock <= product.minimumStock"
+    >
+      <td>{{ product.id }}</td>
+      <td>{{ product.materialNumber }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.unit }}</td>
+      <td>{{ product.currentStock }}</td>
+      <td>{{ product.minimumStock }}</td>
+
+      <td>
+        <span *ngIf="product.currentStock <= product.minimumStock" class="low-stock-badge">
+          Low Stock
+        </span>
+
+        <span *ngIf="product.currentStock > product.minimumStock" class="ok-badge">
+          OK
+        </span>
+      </td>
+
+      <td>
+        <button
+          type="button"
+          class="delete-button"
+          (click)="deleteProduct(product.id!)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="products.length === 0 && !errorMessage">
+  Keine Produkte vorhanden.
+</p>

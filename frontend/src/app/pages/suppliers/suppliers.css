@@ -1,0 +1,98 @@
+h2 {
+  margin-bottom: 10px;
+}
+
+.info-text {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.success-message {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.error-message {
+  color: #b00020;
+  background-color: #ffe6e6;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.form-card,
+.search-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+}
+
+.form-card h3,
+.search-card h3 {
+  margin-top: 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  margin-top: 15px;
+  margin-right: 10px;
+  padding: 10px 16px;
+  border: none;
+  background-color: #243447;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1b2838;
+}
+
+.suppliers-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.suppliers-table th,
+.suppliers-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.suppliers-table th {
+  background-color: #f2f2f2;
+}
+
+.delete-button {
+  background-color: #b00020;
+}
+
+.delete-button:hover {
+  background-color: #7a0016;
+}
+
+.search-card button {
+  margin-left: 10px;
+}
+
+.search-card input {
+  min-width: 280px;
+}

@@ -1,0 +1,55 @@
+<h2>Stock Report</h2>
+
+<p class="info-text">
+  Diese Seite zeigt den aktuellen Lagerbestand und Produkte mit niedrigem Bestand.
+</p>
+
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
+<section class="action-card">
+  <button type="button" (click)="loadStockReport()">Show All Stock</button>
+  <button type="button" (click)="loadLowStockReport()">Show Low Stock Only</button>
+</section>
+
+<table *ngIf="stockRows.length > 0" class="report-table">
+  <thead>
+    <tr>
+      <th>Product ID</th>
+      <th>Material Number</th>
+      <th>Product Name</th>
+      <th>Unit</th>
+      <th>Current Stock</th>
+      <th>Minimum Stock</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr
+      *ngFor="let row of stockRows"
+      [class.low-stock-row]="row.lowStock"
+    >
+      <td>{{ row.productId }}</td>
+      <td>{{ row.materialNumber }}</td>
+      <td>{{ row.productName }}</td>
+      <td>{{ row.unit }}</td>
+      <td>{{ row.currentStock }}</td>
+      <td>{{ row.minimumStock }}</td>
+      <td>
+        <span *ngIf="row.lowStock" class="low-stock-badge">
+          Low Stock
+        </span>
+
+        <span *ngIf="!row.lowStock" class="ok-badge">
+          OK
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="stockRows.length === 0 && !errorMessage">
+  Keine Daten vorhanden.
+</p>

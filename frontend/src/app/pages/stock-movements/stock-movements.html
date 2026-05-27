@@ -1,0 +1,108 @@
+<h2>Stock Movements</h2>
+
+<p class="info-text">
+  Hier koennen Wareneingaenge und Warenausgaenge erfasst werden.
+</p>
+
+
+<div *ngIf="successMessage" class="success-message">
+  {{ successMessage }}
+</div>
+
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
+<section class="form-card">
+  <h3>Create Stock Movement</h3>
+
+  <form (ngSubmit)="createMovement()">
+    <div class="form-grid">
+      <select
+            name="productId"
+            [(ngModel)]="newMovement.productId"
+            required
+            >
+            <option [ngValue]="0">Select Product</option>
+
+            <option *ngFor="let product of products" [ngValue]="product.id">
+                {{ product.materialNumber }} - {{ product.name }} | Stock: {{ product.currentStock }}
+            </option>
+        </select>
+
+      <select
+        name="supplierId"
+        [(ngModel)]="newMovement.supplierId"
+      >
+        <option [ngValue]="null">No Supplier</option>
+        <option *ngFor="let supplier of suppliers" [ngValue]="supplier.id">
+          {{ supplier.name }}
+        </option>
+      </select>
+
+      <select
+        name="movementType"
+        [(ngModel)]="newMovement.movementType"
+        required
+      >
+        <option value="EINGANG">EINGANG</option>
+        <option value="AUSGANG">AUSGANG</option>
+      </select>
+
+      <input
+        type="number"
+        name="quantity"
+        placeholder="Quantity"
+        [(ngModel)]="newMovement.quantity"
+        min="1"
+        required
+      />
+
+      <input
+        type="text"
+        name="note"
+        placeholder="Note"
+        [(ngModel)]="newMovement.note"
+      />
+    </div>
+
+    <button type="submit">Save Movement</button>
+  </form>
+</section>
+
+<table *ngIf="movements.length > 0" class="movements-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Product</th>
+      <th>Supplier</th>
+      <th>Type</th>
+      <th>Quantity</th>
+      <th>Date</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let movement of movements">
+      <td>{{ movement.id }}</td>
+      <td>{{ movement.product.materialNumber }} - {{ movement.product.name }}</td>
+      <td>{{ movement.supplier?.name || '-' }}</td>
+      <td>
+        <span
+          [class.in-badge]="movement.movementType === 'EINGANG'"
+          [class.out-badge]="movement.movementType === 'AUSGANG'"
+        >
+          {{ movement.movementType }}
+        </span>
+      </td>
+      <td>{{ movement.quantity }}</td>
+      <td>{{ movement.movementDate }}</td>
+      <td>{{ movement.note }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="movements.length === 0 && !errorMessage">
+  Keine Lagerbewegungen vorhanden.
+</p>

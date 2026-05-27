@@ -1,0 +1,96 @@
+h2 {
+  margin-bottom: 10px;
+}
+
+.info-text {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.success-message {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.error-message {
+  color: #b00020;
+  background-color: #ffe6e6;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.form-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+}
+
+.form-card h3 {
+  margin-top: 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+input,
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 16px;
+  border: none;
+  background-color: #243447;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1b2838;
+}
+
+.movements-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.movements-table th,
+.movements-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.movements-table th {
+  background-color: #f2f2f2;
+}
+
+.in-badge {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.out-badge {
+  background-color: #f8d7da;
+  color: #842029;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}

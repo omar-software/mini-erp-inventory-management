@@ -1,0 +1,110 @@
+<h2>Suppliers</h2>
+
+<p class="info-text">
+  Diese Seite zeigt Lieferanten aus dem Spring Boot Backend.
+</p>
+
+<div *ngIf="successMessage" class="success-message">
+  {{ successMessage }}
+</div>
+
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
+<section class="form-card">
+  <h3>Add New Supplier</h3>
+
+  <form (ngSubmit)="createSupplier()">
+    <div class="form-grid">
+      <input
+        type="text"
+        name="name"
+        placeholder="Supplier Name"
+        [(ngModel)]="newSupplier.name"
+        required
+      />
+
+      <input
+        type="text"
+        name="contactPerson"
+        placeholder="Contact Person"
+        [(ngModel)]="newSupplier.contactPerson"
+      />
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        [(ngModel)]="newSupplier.email"
+      />
+
+      <input
+        type="text"
+        name="phone"
+        placeholder="Phone"
+        [(ngModel)]="newSupplier.phone"
+      />
+
+      <input
+        type="text"
+        name="city"
+        placeholder="City"
+        [(ngModel)]="newSupplier.city"
+      />
+    </div>
+
+    <button type="submit">Save Supplier</button>
+  </form>
+</section>
+
+<section class="search-card">
+  <h3>Search Suppliers</h3>
+
+  <input
+    type="text"
+    placeholder="Search by name or city"
+    [(ngModel)]="searchKeyword"
+  />
+
+  <button type="button" (click)="searchSuppliers()">Search</button>
+  <button type="button" (click)="resetSearch()">Reset</button>
+</section>
+
+<table *ngIf="suppliers.length > 0" class="suppliers-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Contact Person</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>City</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let supplier of suppliers">
+      <td>{{ supplier.id }}</td>
+      <td>{{ supplier.name }}</td>
+      <td>{{ supplier.contactPerson }}</td>
+      <td>{{ supplier.email }}</td>
+      <td>{{ supplier.phone }}</td>
+      <td>{{ supplier.city }}</td>
+      <td>
+        <button
+          type="button"
+          class="delete-button"
+          (click)="deleteSupplier(supplier.id!)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="suppliers.length === 0 && !errorMessage">
+  Keine Lieferanten vorhanden.
+</p>
