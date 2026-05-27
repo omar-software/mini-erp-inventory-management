@@ -1,0 +1,292 @@
+# Mini ERP Inventory Management System
+
+A small ERP-inspired inventory management backend application built with Java Spring Boot and MariaDB.
+
+The project simulates basic ERP/SAP-like inventory processes such as material management, supplier management, stock movements and stock reporting.
+
+## Project Goal
+
+The goal of this project is to build a simple backend system that represents a small part of an ERP inventory module.
+
+It focuses on:
+
+- Products / Materials
+- Suppliers
+- Stock Movements
+- Current Stock Reports
+- Low Stock Reports
+
+This project was created as a portfolio project for Junior Java / SAP / ABAP Developer positions.
+
+## Tech Stack
+
+- Java 17
+- Spring Boot
+- Spring Web
+- Spring Data JPA
+- MariaDB / MySQL
+- Hibernate
+- Bean Validation
+- Swagger / OpenAPI
+- Maven
+- Git / GitHub
+
+## Features
+
+### Product / Material Management
+
+- Create products
+- Read all products
+- Read product by ID
+- Update products
+- Delete products
+- Search products by name or material number
+- Validate required fields
+- Unique material number
+
+### Supplier Management
+
+- Create suppliers
+- Read all suppliers
+- Read supplier by ID
+- Update suppliers
+- Delete suppliers
+- Search suppliers by name or city
+
+### Stock Movements
+
+- Create stock movement records
+- Incoming stock movement: `EINGANG`
+- Outgoing stock movement: `AUSGANG`
+- Automatic stock increase for incoming goods
+- Automatic stock decrease for outgoing goods
+- Validation for insufficient stock
+- View stock movements by product
+
+### Stock Reports
+
+- Current stock report
+- Low stock report
+- Minimum stock check
+
+### API Documentation
+
+Swagger UI is available after starting the application:
+
+```text
+http://localhost:8080/swagger-ui.html
+```
+
+## Database
+
+Database name:
+
+```text
+mini_erp_inventory
+```
+
+The application uses MariaDB / MySQL.
+
+Example database creation:
+
+```sql
+CREATE DATABASE mini_erp_inventory;
+```
+
+## Configuration
+
+The database connection is configured in:
+
+```text
+src/main/resources/application.properties
+```
+
+Example configuration:
+
+```properties
+spring.datasource.url=jdbc:mariadb://localhost:3306/mini_erp_inventory
+spring.datasource.username=root
+spring.datasource.password=
+
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+server.port=8080
+
+springdoc.swagger-ui.path=/swagger-ui.html
+```
+
+## REST API Endpoints
+
+### Products
+
+```text
+GET     /api/products
+GET     /api/products/{id}
+POST    /api/products
+PUT     /api/products/{id}
+DELETE  /api/products/{id}
+GET     /api/products/search?keyword=laptop
+```
+
+### Suppliers
+
+```text
+GET     /api/suppliers
+GET     /api/suppliers/{id}
+POST    /api/suppliers
+PUT     /api/suppliers/{id}
+DELETE  /api/suppliers/{id}
+GET     /api/suppliers/search?keyword=Berlin
+```
+
+### Stock Movements
+
+```text
+GET     /api/stock-movements
+POST    /api/stock-movements
+GET     /api/stock-movements/product/{productId}
+```
+
+### Reports
+
+```text
+GET     /api/reports/stock
+GET     /api/reports/stock/low-stock
+```
+
+## Example Product Request
+
+```json
+{
+  "materialNumber": "MAT-1001",
+  "name": "Laptop Lenovo ThinkPad",
+  "description": "Business Laptop fuer Mitarbeiter",
+  "unit": "STK",
+  "currentStock": 15,
+  "minimumStock": 3
+}
+```
+
+## Example Supplier Request
+
+```json
+{
+  "name": "Tech Supplier GmbH",
+  "contactPerson": "Max Mueller",
+  "email": "max.mueller@techsupplier.de",
+  "phone": "+49 30 123456",
+  "city": "Berlin"
+}
+```
+
+## Example Stock Movement Request
+
+```json
+{
+  "productId": 1,
+  "supplierId": 1,
+  "movementType": "EINGANG",
+  "quantity": 5,
+  "note": "Wareneingang vom Lieferanten"
+}
+```
+
+## How to Run the Project
+
+### 1. Clone the repository
+
+```powershell
+git clone https://github.com/omar-software/mini-erp-inventory-management.git
+```
+
+### 2. Open the project folder
+
+```powershell
+cd mini-erp-inventory-management
+```
+
+### 3. Create the database
+
+```sql
+CREATE DATABASE mini_erp_inventory;
+```
+
+### 4. Start the application
+
+```powershell
+.\mvnw spring-boot:run
+```
+
+The backend runs on:
+
+```text
+http://localhost:8080
+```
+
+Swagger UI:
+
+```text
+http://localhost:8080/swagger-ui.html
+```
+
+## Project Structure
+
+```text
+src/main/java/com/omar/minierp
+│
+├── controller
+│   ├── ProductController.java
+│   ├── SupplierController.java
+│   ├── StockMovementController.java
+│   └── ReportController.java
+│
+├── dto
+│   ├── StockMovementRequest.java
+│   └── StockReportDTO.java
+│
+├── entity
+│   ├── Product.java
+│   ├── Supplier.java
+│   ├── StockMovement.java
+│   └── MovementType.java
+│
+├── repository
+│   ├── ProductRepository.java
+│   ├── SupplierRepository.java
+│   └── StockMovementRepository.java
+│
+├── service
+│   ├── ProductService.java
+│   ├── SupplierService.java
+│   ├── StockMovementService.java
+│   └── ReportService.java
+│
+└── MiniErpInventoryApplication.java
+```
+
+## Portfolio Relevance
+
+This project demonstrates practical knowledge of:
+
+- Java Spring Boot backend development
+- REST API design
+- Database modeling with JPA entities
+- ERP-inspired inventory processes
+- Material and supplier management
+- Stock movement logic
+- API documentation with Swagger
+- Git and GitHub workflow
+
+## Future Improvements
+
+- Angular frontend
+- Authentication and authorization
+- Dashboard with inventory statistics
+- Pagination and sorting
+- Better exception handling
+- Unit and integration tests
+- Docker setup
