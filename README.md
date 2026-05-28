@@ -19,6 +19,27 @@ It focuses on:
 
 This project was created as a portfolio project for Junior Java / SAP / ABAP Developer positions.
 
+## SAP / ERP Relevance
+
+This project is technically implemented with Java Spring Boot and Angular, but the business logic is inspired by ERP and SAP MM processes.
+
+It includes ERP-related concepts such as:
+
+- Material management
+- Supplier management
+- Goods receipt: `EINGANG`
+- Goods issue: `AUSGANG`
+- Current stock calculation
+- Low-stock reporting
+- REST-based interfaces between frontend and backend
+- Unit tests for stock movement logic
+
+A detailed explanation of the SAP-related business context is available here:
+
+```text
+docs/sap-relevance.md
+```
+
 ## Tech Stack
 
 ### Backend
@@ -32,6 +53,8 @@ This project was created as a portfolio project for Junior Java / SAP / ABAP Dev
 - Bean Validation
 - Swagger / OpenAPI
 - Maven
+- JUnit
+- Mockito
 
 ### Frontend
 
@@ -103,7 +126,17 @@ This project was created as a portfolio project for Junior Java / SAP / ABAP Dev
 - Forms for creating products, suppliers and stock movements
 - Tables for displaying backend data
 
-### API Documentation
+### Tests
+
+The backend contains unit tests for the stock movement service.
+
+Tested business logic:
+
+- `EINGANG` increases the current stock
+- `AUSGANG` decreases the current stock
+- Goods issue is blocked if the available stock is not sufficient
+
+## API Documentation
 
 Swagger UI is available after starting the backend application:
 
@@ -295,46 +328,67 @@ The frontend runs on:
 http://localhost:4200
 ```
 
+## Running Tests
+
+To run the backend tests:
+
+```powershell
+.\mvnw test
+```
+
+The tests verify important inventory business logic such as incoming and outgoing stock movements.
+
 ## Project Structure
 
 ```text
 mini-erp-inventory
 │
+├── docs
+│   └── sap-relevance.md
+│
 ├── src
-│   └── main
+│   ├── main
+│   │   └── java
+│   │       └── com
+│   │           └── omar
+│   │               └── minierp
+│   │                   │
+│   │                   ├── controller
+│   │                   │   ├── ProductController.java
+│   │                   │   ├── SupplierController.java
+│   │                   │   ├── StockMovementController.java
+│   │                   │   └── ReportController.java
+│   │                   │
+│   │                   ├── dto
+│   │                   │   ├── StockMovementRequest.java
+│   │                   │   └── StockReportDTO.java
+│   │                   │
+│   │                   ├── entity
+│   │                   │   ├── Product.java
+│   │                   │   ├── Supplier.java
+│   │                   │   ├── StockMovement.java
+│   │                   │   └── MovementType.java
+│   │                   │
+│   │                   ├── repository
+│   │                   │   ├── ProductRepository.java
+│   │                   │   ├── SupplierRepository.java
+│   │                   │   └── StockMovementRepository.java
+│   │                   │
+│   │                   ├── service
+│   │                   │   ├── ProductService.java
+│   │                   │   ├── SupplierService.java
+│   │                   │   ├── StockMovementService.java
+│   │                   │   └── ReportService.java
+│   │                   │
+│   │                   └── MiniErpInventoryApplication.java
+│   │
+│   └── test
 │       └── java
 │           └── com
 │               └── omar
 │                   └── minierp
-│                       │
-│                       ├── controller
-│                       │   ├── ProductController.java
-│                       │   ├── SupplierController.java
-│                       │   ├── StockMovementController.java
-│                       │   └── ReportController.java
-│                       │
-│                       ├── dto
-│                       │   ├── StockMovementRequest.java
-│                       │   └── StockReportDTO.java
-│                       │
-│                       ├── entity
-│                       │   ├── Product.java
-│                       │   ├── Supplier.java
-│                       │   ├── StockMovement.java
-│                       │   └── MovementType.java
-│                       │
-│                       ├── repository
-│                       │   ├── ProductRepository.java
-│                       │   ├── SupplierRepository.java
-│                       │   └── StockMovementRepository.java
-│                       │
-│                       ├── service
-│                       │   ├── ProductService.java
-│                       │   ├── SupplierService.java
-│                       │   ├── StockMovementService.java
-│                       │   └── ReportService.java
-│                       │
-│                       └── MiniErpInventoryApplication.java
+│                       └── service
+│                           └── StockMovementServiceTest.java
 │
 ├── frontend
 │   └── src
@@ -439,7 +493,9 @@ This project demonstrates practical knowledge of:
 - Angular services and routing
 - REST API integration with Angular HttpClient
 - API documentation with Swagger
+- Unit testing with JUnit and Mockito
 - Git and GitHub workflow
+- SAP-related business process documentation
 
 ## Future Improvements
 
@@ -447,6 +503,8 @@ This project demonstrates practical knowledge of:
 - Dashboard with inventory statistics
 - Pagination and sorting
 - Better exception handling
-- Unit and integration tests
+- More unit and integration tests
 - Docker setup
 - UI improvements with Bootstrap or Angular Material
+- SAP UI5 / Fiori learning demo
+- SAP CAP learning demo
