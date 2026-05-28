@@ -15,7 +15,8 @@
     "rootView": {
       "viewName": "mini.erp.demo.view.App",
       "type": "XML",
-      "id": "App"
+      "id": "App",
+      "async": true
     },
     "dependencies": {
       "libs": {

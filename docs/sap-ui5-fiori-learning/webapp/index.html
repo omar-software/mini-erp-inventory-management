@@ -11,20 +11,104 @@
         data-sap-ui-theme="sap_horizon"
         data-sap-ui-libs="sap.m"
         data-sap-ui-compatVersion="edge"
-        data-sap-ui-async="true"
-        data-sap-ui-onInit="module:sap/ui/core/ComponentSupport"
-        data-sap-ui-resourceRoots='{
-            "mini.erp.demo": "./"
-        }'>
+        data-sap-ui-async="true">
+    </script>
+
+    <script>
+        sap.ui.getCore().attachInit(function () {
+
+            // Beispieldaten wie im Mini ERP Projekt
+            var aMaterials = [
+                {
+                    materialNumber: "MAT-1001",
+                    name: "Laptop Lenovo ThinkPad",
+                    unit: "STK",
+                    currentStock: 3,
+                    minimumStock: 3,
+                    status: "Low Stock"
+                },
+                {
+                    materialNumber: "MAT-1002",
+                    name: "Monitor Samsung",
+                    unit: "STK",
+                    currentStock: 8,
+                    minimumStock: 2,
+                    status: "OK"
+                }
+            ];
+
+            // Tabelle im SAP UI5 / Fiori-Stil
+            var oTable = new sap.m.Table({
+                headerText: "Material Stock Overview",
+                columns: [
+                    new sap.m.Column({
+                        header: new sap.m.Text({ text: "Material Number" })
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({ text: "Material Name" })
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({ text: "Unit" })
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({ text: "Current Stock" })
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({ text: "Minimum Stock" })
+                    }),
+                    new sap.m.Column({
+                        header: new sap.m.Text({ text: "Status" })
+                    })
+                ]
+            });
+
+            // Zeilen manuell hinzufuegen
+            aMaterials.forEach(function (material) {
+                oTable.addItem(new sap.m.ColumnListItem({
+                    cells: [
+                        new sap.m.Text({ text: material.materialNumber }),
+                        new sap.m.Text({ text: material.name }),
+                        new sap.m.Text({ text: material.unit }),
+                        new sap.m.ObjectNumber({ number: material.currentStock }),
+                        new sap.m.ObjectNumber({ number: material.minimumStock }),
+                        new sap.m.ObjectStatus({
+                            text: material.status,
+                            state: material.status === "Low Stock" ? "Warning" : "Success"
+                        })
+                    ]
+                }));
+            });
+
+            // Seite erstellen
+            var oPage = new sap.m.Page({
+                title: "Mini ERP Material Stock Demo",
+                content: [
+                    new sap.m.VBox({
+                        items: [
+                            new sap.m.Title({
+                                text: "SAP UI5 / Fiori Learning Demo",
+                                level: "H2"
+                            }),
+                            new sap.m.Text({
+                                text: "This demo shows material stock data similar to the Mini ERP Inventory Management System."
+                            }),
+                            oTable
+                        ]
+                    }).addStyleClass("sapUiSmallMargin")
+                ]
+            });
+
+            // App Container
+            var oApp = new sap.m.App({
+                pages: [oPage]
+            });
+
+            oApp.placeAt("content");
+        });
     </script>
 </head>
 
 <body class="sapUiBody">
-    <div
-        data-sap-ui-component
-        data-name="mini.erp.demo"
-        data-id="container"
-        data-settings='{"id": "mini.erp.demo"}'>
-    </div>
+    <div id="content"></div>
 </body>
 </html>
