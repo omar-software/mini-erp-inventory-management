@@ -16,197 +16,214 @@ Service Layer
 Repository Layer
     |
 Database
-Backend Layers
-Controller Layer
+```
+
+## Backend Layers
+
+### Controller Layer
 
 The controller layer receives HTTP requests from the frontend or from external tools such as Swagger.
 
 Examples:
 
-ProductController
-SupplierController
-StockMovementController
-ReportController
+- `ProductController`
+- `SupplierController`
+- `StockMovementController`
+- `ReportController`
 
 Responsibilities:
 
-Define REST endpoints
-Receive request data
-Return response data
-Delegate business logic to services
-Service Layer
+- Define REST endpoints
+- Receive request data
+- Return response data
+- Delegate business logic to services
+
+### Service Layer
 
 The service layer contains the main business logic.
 
 Examples:
 
-ProductService
-SupplierService
-StockMovementService
-ReportService
+- `ProductService`
+- `SupplierService`
+- `StockMovementService`
+- `ReportService`
 
 Responsibilities:
 
-Validate business rules
-Execute stock movement logic
-Update current stock
-Prevent invalid operations
-Coordinate repository calls
-Repository Layer
+- Validate business rules
+- Execute stock movement logic
+- Update current stock
+- Prevent invalid operations
+- Coordinate repository calls
+
+### Repository Layer
 
 The repository layer handles database access.
 
 Examples:
 
-ProductRepository
-SupplierRepository
-StockMovementRepository
+- `ProductRepository`
+- `SupplierRepository`
+- `StockMovementRepository`
 
 Responsibilities:
 
-Read data from the database
-Save data to the database
-Provide search methods
-DTO Usage
+- Read data from the database
+- Save data to the database
+- Provide search methods
+
+## DTO Usage
 
 The project uses DTOs for selected API operations.
 
 Examples:
 
-StockMovementRequest
-StockReportDTO
+- `StockMovementRequest`
+- `StockReportDTO`
 
 Benefits:
 
-Avoid sending complete entity structures from the frontend
-Keep API input simple
-Separate internal database entities from API request models
-Improve maintainability
-Validation
+- Avoid sending complete entity structures from the frontend
+- Keep API input simple
+- Separate internal database entities from API request models
+- Improve maintainability
+
+## Validation
 
 The project uses Bean Validation annotations.
 
 Examples:
 
-@NotBlank
-@NotNull
-@Min
-@Email
+- `@NotBlank`
+- `@NotNull`
+- `@Min`
+- `@Email`
 
 Purpose:
 
-Prevent invalid data
-Improve API reliability
-Support clean input validation
-Business Logic
+- Prevent invalid data
+- Improve API reliability
+- Support clean input validation
+
+## Business Logic
 
 The most important business logic is located in the stock movement process.
 
-Goods Receipt
+### Goods Receipt
 
-When a movement with type EINGANG is created, the current stock of the selected product is increased.
+When a movement with type `EINGANG` is created, the current stock of the selected product is increased.
 
-Goods Issue
+### Goods Issue
 
-When a movement with type AUSGANG is created, the current stock of the selected product is decreased.
+When a movement with type `AUSGANG` is created, the current stock of the selected product is decreased.
 
 Before the stock is decreased, the backend checks whether enough stock is available.
 
 If the stock is not sufficient, the operation is blocked.
 
-Testing
+## Testing
 
 The project contains unit tests for the stock movement logic.
 
 Covered test cases:
 
-Goods receipt increases stock
-Goods issue decreases stock
-Goods issue is blocked if stock is not sufficient
+- Goods receipt increases stock
+- Goods issue decreases stock
+- Goods issue is blocked if stock is not sufficient
 
 Testing tools:
 
-JUnit
-Mockito
-Code Review Checklist
+- JUnit
+- Mockito
+
+## Code Review Checklist
 
 A simple code review checklist for this project could include:
 
-Are controllers only responsible for HTTP handling?
-Is business logic placed in the service layer?
-Are repository methods simple and understandable?
-Are validation annotations used where needed?
-Are DTOs used for request and report data?
-Are error cases handled?
-Are method and class names clear?
-Are tests available for important business logic?
-Is the code easy to extend?
-Possible Extensions
+- Are controllers only responsible for HTTP handling?
+- Is business logic placed in the service layer?
+- Are repository methods simple and understandable?
+- Are validation annotations used where needed?
+- Are DTOs used for request and report data?
+- Are error cases handled?
+- Are method and class names clear?
+- Are tests available for important business logic?
+- Is the code easy to extend?
+
+## Possible Extensions
 
 The project can be extended with additional ERP-related features.
 
-Authentication and Authorization
+### Authentication and Authorization
 
 Possible extension:
 
-Admin login
-User roles
-Protected endpoints
-Role-based frontend navigation
-Better Exception Handling
+- Admin login
+- User roles
+- Protected endpoints
+- Role-based frontend navigation
+
+### Better Exception Handling
 
 Possible extension:
 
-Global exception handler
-Standard error response object
-Better HTTP status codes
-User-friendly error messages
-Dashboard
+- Global exception handler
+- Standard error response object
+- Better HTTP status codes
+- User-friendly error messages
+
+### Dashboard
 
 Possible extension:
 
-Total products
-Total suppliers
-Number of low-stock products
-Recent stock movements
-Pagination and Sorting
+- Total products
+- Total suppliers
+- Number of low-stock products
+- Recent stock movements
+
+### Pagination and Sorting
 
 Possible extension:
 
-Pagination for product list
-Sorting by material number
-Sorting by current stock
-Filtering by low-stock status
-Advanced Stock Reports
+- Pagination for product list
+- Sorting by material number
+- Sorting by current stock
+- Filtering by low-stock status
+
+### Advanced Stock Reports
 
 Possible extension:
 
-Stock movements by date range
-Stock movements by product
-Stock movements by supplier
-Export stock report as CSV
-SAP-Related Extensions
+- Stock movements by date range
+- Stock movements by product
+- Stock movements by supplier
+- Export stock report as CSV
+
+### SAP-Related Extensions
 
 Possible extension ideas:
 
-SAP UI5 / Fiori frontend demo
-CAP-style data model
-SAP BTP deployment concept
-OData-style service documentation
-ABAP report examples
-Relation to Job Advertisement
+- SAP UI5 / Fiori frontend demo
+- CAP-style data model
+- SAP BTP deployment concept
+- OData-style service documentation
+- ABAP report examples
+
+## Relation to Job Advertisement
 
 This document supports topics that are relevant for Junior ABAP / SAP Developer roles:
 
-Weiterentwicklung bestehender Anwendungen
-Durchführung von Tests
-Code-Reviews
-Strukturierte Softwareentwicklung
-Reports
-Schnittstellen
-ERP-nahe Geschäftslogik
-Erweiterbarkeit von Anwendungen
-Summary
+- Weiterentwicklung bestehender Anwendungen
+- DurchfÃ¼hrung von Tests
+- Code-Reviews
+- Strukturierte Softwareentwicklung
+- Reports
+- Schnittstellen
+- ERP-nahe GeschÃ¤ftslogik
+- Erweiterbarkeit von Anwendungen
+
+## Summary
 
 The project is structured in a way that separates responsibilities between controller, service, repository, entity and DTO classes.
 
