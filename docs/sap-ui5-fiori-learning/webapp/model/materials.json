@@ -1,0 +1,20 @@
+{
+  "materials": [
+    {
+      "materialNumber": "MAT-1001",
+      "name": "Laptop Lenovo ThinkPad",
+      "unit": "STK",
+      "currentStock": 3,
+      "minimumStock": 3,
+      "status": "Low Stock"
+    },
+    {
+      "materialNumber": "MAT-1002",
+      "name": "Monitor Samsung",
+      "unit": "STK",
+      "currentStock": 8,
+      "minimumStock": 2,
+      "status": "OK"
+    }
+  ]
+}

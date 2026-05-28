@@ -1,0 +1,61 @@
+<mvc:View
+    controllerName="mini.erp.demo.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page title="Mini ERP Material Stock Demo">
+        <content>
+            <VBox class="sapUiSmallMargin">
+
+                <Title
+                    text="Material Stock Overview"
+                    level="H2" />
+
+                <Text
+                    text="This SAP UI5 / Fiori-style demo shows material stock data similar to the main Mini ERP project." />
+
+                <Table
+                    items="{materials>/materials}"
+                    class="sapUiSmallMarginTop">
+
+                    <columns>
+                        <Column>
+                            <Text text="Material Number" />
+                        </Column>
+                        <Column>
+                            <Text text="Material Name" />
+                        </Column>
+                        <Column>
+                            <Text text="Unit" />
+                        </Column>
+                        <Column>
+                            <Text text="Current Stock" />
+                        </Column>
+                        <Column>
+                            <Text text="Minimum Stock" />
+                        </Column>
+                        <Column>
+                            <Text text="Status" />
+                        </Column>
+                    </columns>
+
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{materials>materialNumber}" />
+                                <Text text="{materials>name}" />
+                                <Text text="{materials>unit}" />
+                                <ObjectNumber number="{materials>currentStock}" />
+                                <ObjectNumber number="{materials>minimumStock}" />
+                                <ObjectStatus
+                                    text="{materials>status}"
+                                    state="{path: 'materials>status', formatter: '.formatStatusState'}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

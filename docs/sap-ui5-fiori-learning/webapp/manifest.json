@@ -1,0 +1,32 @@
+{
+  "sap.app": {
+    "id": "mini.erp.demo",
+    "type": "application",
+    "title": "Mini ERP Material Stock Demo",
+    "description": "SAP UI5 / Fiori learning demo for material and stock overview",
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5"
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "mini.erp.demo.view.App",
+      "type": "XML",
+      "id": "App"
+    },
+    "dependencies": {
+      "libs": {
+        "sap.m": {}
+      }
+    },
+    "models": {
+      "materials": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/materials.json"
+      }
+    }
+  }
+}
