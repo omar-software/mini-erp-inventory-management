@@ -40,6 +40,26 @@ A detailed explanation of the SAP-related business context is available here:
 docs/sap-relevance.md
 ```
 
+## Code Quality and Extension Notes
+
+The repository also contains documentation about code structure, possible extensions and simple code review points.
+
+The document covers:
+
+- Layered backend architecture
+- Controller, service and repository responsibilities
+- DTO usage
+- Validation
+- Unit testing
+- Code review checklist
+- Possible ERP / SAP-related extensions
+
+Documentation file:
+
+```text
+docs/code-quality-and-extensions.md
+```
+
 ## ABAP Learning Examples
 
 This repository also contains small ABAP learning examples related to the ERP inventory process.
