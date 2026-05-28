@@ -16,6 +16,8 @@ It focuses on:
 - Current Stock Reports
 - Low Stock Reports
 - Angular frontend for user interaction
+- SAP / ERP-related learning documentation
+- ABAP, SAP UI5 / Fiori and SAP CAP / BTP learning examples
 
 This project was created as a portfolio project for Junior Java / SAP / ABAP Developer positions.
 
@@ -40,9 +42,81 @@ A detailed explanation of the SAP-related business context is available here:
 docs/sap-relevance.md
 ```
 
+## ABAP Learning Examples
+
+This repository also contains small ABAP learning examples related to the ERP inventory process.
+
+The examples are located in:
+
+```text
+docs/abap-learning
+```
+
+Covered ABAP topics:
+
+- Simple ABAP report
+- Internal tables
+- LOOP processing
+- WRITE output
+- ABAP OO basics
+- Stock calculation example
+- ERP-inspired material and supplier examples
+
+These examples are intended as a learning addition for Junior ABAP Developer roles.
+
+## SAP UI5 / Fiori Learning Demo
+
+The repository contains a small SAP UI5 / Fiori-style learning demo.
+
+The demo is located in:
+
+```text
+docs/sap-ui5-fiori-learning
+```
+
+The demo shows a simple material stock overview using SAP UI5 concepts.
+
+Covered topics:
+
+- SAP UI5 bootstrap
+- Fiori-style UI structure
+- Material stock overview
+- Object status display
+- Low-stock / OK status
+- ERP-related frontend example
+
+This learning demo is related to job requirements such as SAP UI5, Fiori and modern SAP frontend development.
+
+## SAP CAP / BTP Learning Notes
+
+The repository also contains learning notes about SAP CAP and SAP BTP.
+
+The documentation is located in:
+
+```text
+docs/sap-cap-btp-learning
+```
+
+Covered topics:
+
+- SAP BTP basics
+- SAP CAP basics
+- CAP-style entity idea
+- CAP-style service idea
+- Concept mapping from the Mini ERP project to SAP CAP / BTP
+- Relation to cloud-based SAP development
+
+These notes show how the project concepts could be transferred conceptually into the SAP CAP / BTP world.
+
 ## Code Quality and Extension Notes
 
-The repository also contains documentation about code structure, possible extensions and simple code review points.
+The repository contains documentation about code structure, possible extensions and simple code review points.
+
+The document is located in:
+
+```text
+docs/code-quality-and-extensions.md
+```
 
 The document covers:
 
@@ -53,22 +127,6 @@ The document covers:
 - Unit testing
 - Code review checklist
 - Possible ERP / SAP-related extensions
-
-Documentation file:
-
-```text
-docs/code-quality-and-extensions.md
-```
-
-## ABAP Learning Examples
-
-This repository also contains small ABAP learning examples related to the ERP inventory process.
-
-The examples are located in:
-
-```text
-docs/abap-learning
-```
 
 ## Tech Stack
 
@@ -96,6 +154,15 @@ docs/abap-learning
 - Angular Services
 - FormsModule
 - HttpClient
+
+### SAP / ERP Learning
+
+- ABAP basics
+- ABAP OO basics
+- Internal tables
+- SAP UI5 / Fiori learning demo
+- SAP CAP / BTP learning notes
+- SAP MM-inspired process documentation
 
 ### Tools
 
@@ -368,13 +435,56 @@ To run the backend tests:
 
 The tests verify important inventory business logic such as incoming and outgoing stock movements.
 
+## Running the SAP UI5 / Fiori Learning Demo
+
+Go to the UI5 demo folder:
+
+```powershell
+cd docs\sap-ui5-fiori-learning\webapp
+```
+
+Start a simple local server:
+
+```powershell
+python -m http.server 5500
+```
+
+Open the demo in the browser:
+
+```text
+http://localhost:5500
+```
+
+The demo shows a simple SAP UI5 / Fiori-style material stock overview.
+
 ## Project Structure
 
 ```text
 mini-erp-inventory
 │
 ├── docs
-│   └── sap-relevance.md
+│   ├── sap-relevance.md
+│   ├── code-quality-and-extensions.md
+│   │
+│   ├── abap-learning
+│   │   ├── README.md
+│   │   ├── 01_material_stock_report.abap
+│   │   ├── 02_stock_service_abap_oo.abap
+│   │   └── 03_internal_table_demo.abap
+│   │
+│   ├── sap-ui5-fiori-learning
+│   │   ├── README.md
+│   │   └── webapp
+│   │       ├── index.html
+│   │       ├── manifest.json
+│   │       ├── Component.js
+│   │       ├── controller
+│   │       ├── model
+│   │       └── view
+│   │
+│   └── sap-cap-btp-learning
+│       ├── README.md
+│       └── concept-mapping.md
 │
 ├── src
 │   ├── main
@@ -509,6 +619,26 @@ Features:
 - Show low stock products
 - Highlight low stock rows
 
+## SAP / Job Advertisement Coverage
+
+This project covers several topics from Junior ABAP / SAP Developer job descriptions.
+
+Covered topics:
+
+- ABAP basics
+- ABAP OO basics
+- Reports
+- Internal tables
+- ERP processes
+- SAP MM-inspired material management
+- SAP UI5 / Fiori learning demo
+- SAP CAP / BTP learning notes
+- Interfaces / REST APIs
+- Testing with JUnit and Mockito
+- Code quality documentation
+- Possible application extensions
+- Java and TypeScript programming experience
+
 ## Portfolio Relevance
 
 This project demonstrates practical knowledge of:
@@ -526,6 +656,10 @@ This project demonstrates practical knowledge of:
 - Unit testing with JUnit and Mockito
 - Git and GitHub workflow
 - SAP-related business process documentation
+- ABAP learning examples
+- SAP UI5 / Fiori learning concepts
+- SAP CAP / BTP learning concepts
+- Code quality and extension planning
 
 ## Future Improvements
 
@@ -536,5 +670,6 @@ This project demonstrates practical knowledge of:
 - More unit and integration tests
 - Docker setup
 - UI improvements with Bootstrap or Angular Material
-- SAP UI5 / Fiori learning demo
-- SAP CAP learning demo
+- More advanced ABAP examples
+- OData-style service documentation
+- CAP demo project with CDS model
