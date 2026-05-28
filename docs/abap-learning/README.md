@@ -16,7 +16,8 @@ The goal is to connect the ERP business logic of the project with basic ABAP con
 
 ## Relation to the Main Project
 
-The main project was built with Java Spring Boot and Angular.  
+The main project was built with Java Spring Boot and Angular.
+
 These ABAP examples show how similar ERP-related ideas could be represented in ABAP.
 
 Examples:
