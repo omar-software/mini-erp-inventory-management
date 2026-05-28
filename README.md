@@ -40,6 +40,16 @@ A detailed explanation of the SAP-related business context is available here:
 docs/sap-relevance.md
 ```
 
+## ABAP Learning Examples
+
+This repository also contains small ABAP learning examples related to the ERP inventory process.
+
+The examples are located in:
+
+```text
+docs/abap-learning
+```
+
 ## Tech Stack
 
 ### Backend
